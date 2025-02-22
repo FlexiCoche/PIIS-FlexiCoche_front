@@ -1,3 +1,79 @@
-<html>
-  <p>Hello World!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Primera Página Web</title>
+    <style>
+        /* Estilos CSS básicos */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .contenido {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabecera de la página -->
+    <header>
+        <h1>Bienvenido a Mi Sitio Web</h1>
+        <nav>
+            <a href="#inicio">Inicio</a> | 
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <div class="contenido">
+        <h2>Sobre Mí</h2>
+        <p>Este es un párrafo de ejemplo con texto de relleno:</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam voluptatum temporibus explicabo?</p>
+        
+        <h3>Mis Habilidades</h3>
+        <ul>
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript</li>
+        </ul>
+        
+        <!-- Formulario de contacto -->
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <form>
+                <label>Nombre:</label>
+                <input type="text" placeholder="Escribe tu nombre">
+                
+                <label>Email:</label>
+                <input type="email" placeholder="tucorreo@ejemplo.com">
+                
+                <label>Mensaje:</label>
+                <textarea rows="4"></textarea>
+                
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Pie de página -->
+    <footer style="margin-top: 20px; text-align: center;">
+        <p>© 2024 Mi Sitio Web - Todos los derechos reservados</p>
+    </footer>
+</body>
 </html>
