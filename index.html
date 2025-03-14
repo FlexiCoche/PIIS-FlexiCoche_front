@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlexiCoche - Alquiler de Coches</title>
+    <script src="/js/vendors/fontawesome-loader.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="./assets/css/index.css">
     <link rel="stylesheet" href="./assets/css/animation.css">
@@ -12,16 +13,27 @@
     <header class="header">
         <div class="nav-bar">
             <div class="nav-logo">FLEXICOCHES</div>
+
+
             <div class="nav-links-container">
                 <a class="nav-link active" href="#topSection" id="topLink">Home</a>
                 <a class="nav-link" href="#contactSection" id="contactLink">Contacto</a>
-                <a class="nav-link login-icon" href="./templates/login.html"><i class="fas fa-user"></i></a>
+                <!-- Sección de autenticación dinámica -->
+            <div class="auth-section">
+            <div class="user-info hidden" id="userInfo">
+                <span class="user-email" id="headerUserEmail"></span>
+                <button class="logout-btn" id="headerLogoutBtn"><i class="fas fa-sign-out-alt"></i></button>
             </div>
+            <a class="nav-link auth-trigger" href="./templates/login.html" id="loginLink"><i class="fas fa-user"></i></a>
+            </div>
+            </div>
+
+
         </div>
     </header>
     <div class="container">
         <div class="search-panel">
-            <img src="/assets/img/mustang.jpg" alt="Banner" class="banner-image">
+            <img src="./assets/img/mustang.jpg" alt="Banner" class="banner-image">
             <div class="search-form">
                 <h2>Encuentra tu coche ideal</h2>
                 <form>
@@ -52,21 +64,21 @@
         <div class="cars">
             <div class="car">
                 <a href="./templates/car_detail.html" target="_blank" style="text-decoration: none;">
-                    <img src="/assets/img/ford fiesta.png" alt="Ford Fiesta" class="car-fordfiesta">
+                    <img src="./assets/img/ford fiesta.png" alt="Ford Fiesta" class="car-fordfiesta">
                     <h2 class="car_title">Ford Fiesta</h2>
                     <p class="car_detail">Compacto y eficiente para la ciudad.</p>
                 </a>
             </div>
             <div class="car">
                 <a href="./templates/car_detail.html" target="_blank" style="text-decoration: none;">
-                    <img src="/assets/img/toyota corolla.png" alt="Toyota Corolla" class="car-toyotacorolla">
+                    <img src="./assets/img/toyota corolla.png" alt="Toyota Corolla" class="car-toyotacorolla">
                     <h2 class="car_title">Toyota Corolla</h2>
                     <p class="car_detail">Espacioso y cómodo para viajes largos.</p>
                 </a>
             </div>
             <div class="car">
                 <a href="./templates/car_detail.html" target="_blank" style="text-decoration: none;">
-                    <img src="/assets/img/bmwx5.png" alt="BMW X5" class="car-bmwx5">
+                    <img src="./assets/img/bmwx5.png" alt="BMW X5" class="car-bmwx5">
                     <h2 class="car_title">BMW X5</h2>
                     <p class="car_detail">Lujo y potencia en un solo paquete.</p>
                 </a>
@@ -84,5 +96,9 @@
             </div>
         </div>
     </footer>
+
+    <script src="/js/vendors/bootstrap-loader.js"></script>
+    <script type="module" src="/js/modules/pages/index.page.js"></script>
+
 </body>
 </html>
