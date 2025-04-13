@@ -81,10 +81,12 @@ export const authUtils = {
             const emailElement = document.getElementById('headerUserEmail');
             const loginLink = document.getElementById('loginLink');
             const userInfo = document.getElementById('userInfo');
+            const headerLogoutBtn = document.getElementById('headerLogoutBtn');
 
             if (emailElement) emailElement.textContent = userData.email;
             if (loginLink) loginLink.classList.add('hidden');
             if (userInfo) userInfo.classList.remove('hidden');
+            if (headerLogoutBtn) headerLogoutBtn.classList.remove('hidden');
         }
     },
 

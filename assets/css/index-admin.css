@@ -35,6 +35,27 @@ body {
     gap: 5px;
 }
 
+.top-bar nav a:hover {
+    color: #ccc;
+}
+
+/* Botón amarillo */
+.btn-yellow {
+    background-color: #ffd700;
+    color: black !important;
+    border: none;
+    padding: 5px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-yellow:hover {
+    background-color: #e6c200;
+}
+
 .separator {
     border-left: 2px solid white;
     height: 20px;
