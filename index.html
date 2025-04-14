@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FlexiCoche</title>
-  <link rel="stylesheet" href="./assets/css/index.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./assets/css/index.css" />
   <link rel="icon" type="image/png" href="assets/icons/logo.png" />
 </head>
 <body>
@@ -15,21 +15,13 @@
       <span class="logo">
         <a href="../index.html"><img src="assets/images/logo.png" alt="FlexiCoche Logo" /></a>
       </span>
-      <nav>
-        <a href="templates/search.html"><i class="fas fa-car"></i> Gestionar reservas</a>
-        <a href="templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
-        <span class="separator"></span>
-        <div class="auth-section">
-          <div class="user-info hidden" id="userInfo">
-            <span class="user-email" id="headerUserEmail"></span>
-            <button class="logout-btn hidden" id="headerLogoutBtn">
-              <i class="fas fa-sign-out-alt hidden"></i>
-            </button>
-          </div>
-          <a class="nav-link auth-trigger" href="./templates/login.html" id="loginLink">
-            <i class="fas fa-user"></i>
-          </a>
-        </div>
+      <nav class="auth-section">
+        <a href="/templates/consult-reserv.html"><i class="fas fa-car"></i> Gestionar reservas</a>
+        <div  id="userInfo"><a><i class="fas fa-user"></i> Hola, <span id="headerUserName"></span></a></div>
+        <a id="loginLink" href="templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
+        <a class="logout-btn d-none" id="headerLogoutBtn">
+          <i class="fas fa-sign-out-alt"></i>
+        </a>
       </nav>
     </div>
   </header>

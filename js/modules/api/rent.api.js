@@ -36,3 +36,69 @@ export async function createAlquiler(data) {
 
     return null; // todo ha ido bien aunque no haya respuesta
 }
+
+// 🆕 Obtener todos los alquileres del usuario autenticado
+export async function getAlquileresDelUsuario() {
+    const token = localStorage.getItem('jwtToken');
+
+    if (!token) {
+        alert('Debes iniciar sesión para ver tus reservas.');
+        window.location.href = '../templates/login.html';
+        return;
+    }
+
+    const headers = {
+        Authorization: `Bearer ${token}`
+    };
+
+    const response = await fetch(API_URL, {
+        method: 'GET',
+        headers
+    });
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        console.error('❌ Error al obtener alquileres:', errorText);
+        throw new Error(`Error al obtener alquileres: ${errorText}`);
+    }
+
+    return await response.json();
+}
+
+// Pagar alquiler → cambia el estado a "procesando"
+export async function pagarAlquiler(idAlquiler) {
+    const token = localStorage.getItem('jwtToken');
+
+    const response = await fetch(`${API_URL}/${idAlquiler}/pagar`, {
+        method: 'PATCH',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+
+    if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(errorMessage);
+    }
+
+    return await response.json().catch(() => null);
+}
+
+// Anular alquiler → eliminar de la base de datos
+export async function anularAlquiler(idAlquiler) {
+    const token = localStorage.getItem('jwtToken');
+
+    const response = await fetch(`${API_URL}/${idAlquiler}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Error al anular el alquiler: ${errorText}`);
+    }
+
+    return true;
+}

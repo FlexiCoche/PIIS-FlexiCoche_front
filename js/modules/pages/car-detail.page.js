@@ -105,6 +105,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             rentMessage.textContent = '✅ Reserva realizada con éxito.';
             rentMessage.classList.remove('text-danger');
             rentMessage.classList.add('text-success');
+            setTimeout(() => window.location.href = '/templates/reserv-detail-user.html', 1500);
         } catch (err) {
             rentMessage.textContent = '❌ Error al realizar la reserva.';
             rentMessage.classList.remove('text-success');
