@@ -435,3 +435,7 @@ footer {
     text-align: center;
     margin:0 10% 0 10%;
 }
+
+.d-none {
+    display: none !important;
+  }  

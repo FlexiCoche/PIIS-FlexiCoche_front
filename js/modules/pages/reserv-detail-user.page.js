@@ -1,4 +1,5 @@
 import { getAlquileresDelUsuario, pagarAlquiler, anularAlquiler } from '../api/rent.api.js';
+import { authUtils } from '../utils/auth.utils.js';
 
 function formatearFecha(fechaIso) {
     const date = new Date(fechaIso);
@@ -14,6 +15,7 @@ function calcularDias(fInicio, fFin) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+    await authUtils.init();
     const container = document.getElementById('reservation-details');
     container.innerHTML = '<p class="text-muted">🔄 Cargando reserva...</p>';
 

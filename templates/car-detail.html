@@ -12,17 +12,22 @@
     <script type="module" src="../js/modules/pages/car-detail.page.js"></script>
 </head>
 <body>
-<header>
-    <div class="top-bar">
-        <span class="logo"><a href="../index.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo"></a></span>
-        <nav>
-            <a href="../templates/search.html"><i class="fas fa-car"></i> Gestionar reservas</a>
-            <a href="../templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
-            <span class="separator"></span>
-            <a href="../templates/register.html"><i class="fas"></i> Regístrate</a>
-        </nav>
-    </div>
-</header>
+    <header>
+        <div class="top-bar">
+            <span class="logo">
+                <a href="../index.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
+            </span>
+            <nav class="auth-section">
+                <a href="/templates/consult-reserv.html"><i class="fas fa-car"></i> Gestionar reservas</a>
+                <div id="userInfo"><a href="/templates/modify-profile.html"><i class="fas fa-user"></i> Hola, <span
+                            id="headerUserName"></span></a></div>
+                <a id="loginLink" href="templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
+                <a class="logout-btn d-none" id="headerLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </nav>
+        </div>
+    </header>
 
 <div class="container">
     <div id="car-box" class="grad-black-white">

@@ -1,7 +1,9 @@
 import { getVehiculoByMatricula } from '../api/vehicle.api.js';
 import { createAlquiler } from '../api/rent.api.js';
+import { authUtils } from '../utils/auth.utils.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+    await authUtils.init();
     const params = new URLSearchParams(window.location.search);
     const matricula = params.get('matricula');
 

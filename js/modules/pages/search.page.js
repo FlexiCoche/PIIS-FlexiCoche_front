@@ -1,4 +1,5 @@
 import { searchVehicles, getLocalizaciones } from '../api/vehicle.api.js';
+import { authUtils } from '../utils/auth.utils.js';
 
 function restaurarTipoSeleccionado() {
     const stored = JSON.parse(localStorage.getItem('lastSearch') || '{}');
@@ -11,7 +12,8 @@ function restaurarTipoSeleccionado() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    await authUtils.init();
     const form = document.getElementById('search-form');
     const resultsContainer = document.getElementById('results');
     const fechaInicioInput = document.querySelector('input[name="fechaInicio"]');
