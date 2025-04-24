@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <div class="top-bar">
+        <div id="navbarUser" class="top-bar">
             <span class="logo">
                 <a href="../index.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
             </span>
@@ -19,6 +19,21 @@
                 <div id="userInfo"><a href="/templates/modify-profile.html"><i class="fas fa-user"></i> Hola, <span
                             id="headerUserName"></span></a></div>
                 <a id="loginLink" href="templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
+                <a class="logout-btn d-none" id="headerLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </nav>
+        </div>
+
+        <div id="navbarAdmin" class="top-bar">
+            <span class="logo">
+                <a href="../templates/index-admin.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
+            </span>
+            <nav class="auth-section">
+                <a href="../templates/car-data-new.html" class="btn-yellow"><i class="fas fa-plus"></i> Agregar vehículo</a>
+                <a href="/templates/consult-reserv.html"><i class="fas fa-car"></i> Gestionar reservas</a>
+                <div id="userInfo"><a><i class="fas fa-user d-none"></i> Hola, <span id="headerUserName"></span></a></div>
+                <a id="loginLink" href="../templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
                 <a class="logout-btn d-none" id="headerLogoutBtn">
                     <i class="fas fa-sign-out-alt"></i>
                 </a>
@@ -65,6 +80,24 @@
             </div>
         </div>
     </main>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const adminNavbar = document.getElementById('navbarAdmin'); 
+        const userNavbar = document.getElementById('navbarUser'); 
+
+        const userData = authUtils.getAuthData();
+        console.log(userData); // Verifica que el token sea válido
+
+        if (userData && userData.roles.includes('admin')) {
+            adminNavbar.style.display = 'flex'; 
+            userNavbar.style.display = 'none';   
+        } else {
+            adminNavbar.style.display = 'none'; 
+            userNavbar.style.display = 'flex'; 
+        }
+    });
+    </script>
 
     <script type="module" src="../js/modules/pages/reserv-detail-user.page.js"></script>
 </body>

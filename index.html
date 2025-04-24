@@ -88,6 +88,18 @@
       </div>
     </section>
   </main>
+  
+  <footer>
+    <div class="footer-content">
+        <p>&copy; 2025 FlexiCoche - Todos los derechos reservados</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+</footer>
 
   <script>
     function selectVehicle(button) {
@@ -137,7 +149,7 @@
 
   <!-- Carga dinámica de localizaciones -->
   <script type="module">
-    import { getLocalizaciones } from './js/modules/api/vehicle.api.js';
+    import { getLocalizaciones } from '../js/modules/api/vehicle.api.js';
 
     document.addEventListener('DOMContentLoaded', async () => {
       const select = document.getElementById('location');

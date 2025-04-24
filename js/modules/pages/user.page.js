@@ -25,7 +25,15 @@ export class LoginPage {
                 }
 
                 localStorage.setItem('jwtToken', response.token);
-                window.location.href = '/index.html';
+                const userRole = response.roles[0]; // Tomamos el primer rol del array
+                localStorage.setItem('userRol', userRole);
+
+                if (userRole === 'ADMIN') {
+                    window.location.href = '/templates/index-admin.html';
+                } else {
+                    window.location.href = '/index.html';
+                }
+
             } catch (error) {
                 console.error('Error durante el login:', error);
                 loginForm.dispatchEvent(new CustomEvent('login-error', {

@@ -149,6 +149,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     restaurarTipoSeleccionado();
 
+    function obtenerIdDeUrl(url) {
+        const regex = /[?&]id=([a-zA-Z0-9_-]+)/;
+        const match = url.match(regex);
+        return match ? match[1] : null;
+    }
+
     function renderResults(vehicles, currentParams) {
         if (!resultsContainer) return;
 
@@ -157,8 +163,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         const tipo = currentParams?.tipo || '';
 
         resultsContainer.innerHTML = vehicles.length
-            ? vehicles.map(vehicle => {
-                const imagenUrl = vehicle.imagenUrl?.trim() || '/assets/images/default.png';
+            ? vehicles.map(vehicle => {     
+                const imagenUrl = vehicle.imagenUrl?.trim();
+                const idImgUrlAcotada = obtenerIdDeUrl(imagenUrl);
+                const idImgUrl = idImgUrlAcotada ? `https://drive.google.com/thumbnail?id=${idImgUrlAcotada}` : '/assets/images/default.png';
+                
                 const queryString = `matricula=${encodeURIComponent(vehicle.matricula)}&fechaInicio=${encodeURIComponent(fechaInicio)}&fechaFin=${encodeURIComponent(fechaFin)}&tipo=${encodeURIComponent(tipo)}`;
 
                 return `
@@ -166,7 +175,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <div class="card mb-3 text-dark">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="${imagenUrl}" class="img-fluid rounded-start" alt="Imagen de ${vehicle.modelo}">
+                                    <img src="${idImgUrl}" class="img-fluid rounded-start" alt="Imagen de ${vehicle.marca} ${vehicle.modelo}">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">

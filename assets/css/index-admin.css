@@ -238,3 +238,7 @@ form button:hover {
 .vehicle button:hover {
     background: #ffcc00; /* Cambia el color de fondo al pasar el ratón */
 }
+
+.d-none {
+    display: none !important;
+}

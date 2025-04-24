@@ -36,6 +36,25 @@ export async function getLocalizaciones() {
     return await response.json();
 }
 
+export async function getLocalizacionesDetalladas() {
+    const url = 'http://localhost:8080/vehiculos/localizaciones/detallado';
+    console.log("URL a la que estamos haciendo la petición:", url);
+
+    const token = localStorage.getItem('jwtToken');
+    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+    console.log("Headers de la solicitud:", headers);
+
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: headers
+    });
+
+    if (!response.ok) {
+        throw new Error('Error al cargar localizaciones');
+    }
+
+    return await response.json();
+}
 export async function getVehiculoByMatricula(matricula) {
     const url = `http://localhost:8080/vehiculos/matricula/${matricula}`;
 

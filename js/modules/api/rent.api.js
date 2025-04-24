@@ -40,6 +40,7 @@ export async function createAlquiler(data) {
 // 🆕 Obtener todos los alquileres del usuario autenticado
 export async function getAlquileresDelUsuario() {
     const token = localStorage.getItem('jwtToken');
+    console.log('Token JWT:', token); // Verifica que el token sea válido
 
     if (!token) {
         alert('Debes iniciar sesión para ver tus reservas.');
