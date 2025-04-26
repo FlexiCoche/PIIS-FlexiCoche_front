@@ -171,23 +171,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         if (!response.ok) throw new Error('Error al guardar vehículo');
         
-            // const data = await response.json();
-            // alert('✅ Vehículo guardado correctamente');
-            // console.log('Vehículo creado:', data);
-            const redirectMsg = document.createElement('div');
-            redirectMsg.textContent = '🔄 Redirigiendo en 5 segundos...';
-            redirectMsg.style.color = 'green';
-            redirectMsg.style.marginTop = '1rem';
-            redirectMsg.style.fontWeight = 'bold';
-            redirectMsg.style.fontSize = '1.1rem';
+            const data = await response.json();
+            alert('✅ Vehículo guardado correctamente');
+            window.location.href = '../templates/index-admin.html';
             
-            // Lo añadimos debajo del formulario o donde prefieras
-            form.appendChild(redirectMsg);
-            
-            // Redirigir después de 5 segundos
-            setTimeout(() => {
-                window.location.href = '/admin/index.html'; // Cambia la ruta si es diferente
-            }, 5000);
         } catch (err) {
             console.error('❌ Error al guardar el vehículo:', err);
             alert('Hubo un problema al guardar el vehículo.');

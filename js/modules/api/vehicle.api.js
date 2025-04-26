@@ -69,3 +69,18 @@ export async function getVehiculoByMatricula(matricula) {
     if (!response.ok) throw new Error('Error al obtener vehículo por matrícula');
     return await response.json();
 }
+
+export async function getVehiculos() {
+    const url = 'http://localhost:8080/vehiculos';
+
+    const token = localStorage.getItem('token');
+    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+
+    const response = await fetch(url, {
+        method: 'GET',
+        headers
+    });
+
+    if (!response.ok) throw new Error('Error al cargar vehículos');
+    return await response.json();
+}
