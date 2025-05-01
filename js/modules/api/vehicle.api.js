@@ -38,11 +38,9 @@ export async function getLocalizaciones() {
 
 export async function getLocalizacionesDetalladas() {
     const url = 'http://localhost:8080/vehiculos/localizaciones/detallado';
-    console.log("URL a la que estamos haciendo la petición:", url);
 
     const token = localStorage.getItem('jwtToken');
     const headers = token ? { Authorization: `Bearer ${token}` } : {};
-    console.log("Headers de la solicitud:", headers);
 
     const response = await fetch(url, {
         method: 'GET',
@@ -84,3 +82,30 @@ export async function getVehiculos() {
     if (!response.ok) throw new Error('Error al cargar vehículos');
     return await response.json();
 }
+
+export async function actualizarVehiculo(matricula, vehiculoData) {
+    try {
+        const url = `http://localhost:8080/vehiculos/updateVehiculo/${matricula}`;
+        const token = localStorage.getItem('jwtToken');  
+
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(vehiculoData)
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error al actualizar el vehículo: ${response.statusText}`);
+        }
+
+        const vehiculoActualizado = await response.json();
+        console.log("✅ Vehículo actualizado correctamente:", vehiculoActualizado);
+
+    } catch (error) {
+        console.error("❌ Error en la actualización del vehículo:", error);
+    }
+}
+

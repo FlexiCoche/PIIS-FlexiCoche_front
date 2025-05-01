@@ -176,7 +176,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function renderResults(vehicles, currentParams) {
         if (!resultsContainer) return;
-    
+
+        const userRol = localStorage.getItem('userRol');
+
         const fechaInicio = currentParams?.fechaInicio || '';
         const fechaFin = currentParams?.fechaFin || '';
         const tipo = currentParams?.tipo || '';
@@ -216,17 +218,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         resultsContainer.innerHTML = filtrados.length
             ? filtrados.map(vehicle => {     
                 const imagenUrl = vehicle.imagenUrl?.trim();
-                const idImgUrlAcotada = obtenerIdDeUrl(imagenUrl);
-                const idImgUrl = idImgUrlAcotada ? `https://drive.google.com/thumbnail?id=${idImgUrlAcotada}` : '/assets/images/default.png';
+                //const cloudinaryUrl = imagenUrl ? `https://res.cloudinary.com/dgmgxocne/image/upload/vehiculos/${imagenUrl}` : '/assets/images/default.png';  
+
+                //const idImgUrlAcotada = obtenerIdDeUrl(imagenUrl);
+                //const idImgUrl = idImgUrlAcotada ? `https://drive.google.com/thumbnail?id=${idImgUrlAcotada}` : '/assets/images/default.png';
                 
                 const queryString = `matricula=${encodeURIComponent(vehicle.matricula)}&fechaInicio=${encodeURIComponent(fechaInicio)}&fechaFin=${encodeURIComponent(fechaFin)}&tipo=${encodeURIComponent(tipo)}`;
-    
+                const editButton = userRol === 'ADMIN' 
+                ? `<div class="edit-button mt-2"><a href="../templates/car-data-edit.html?matricula=${encodeURIComponent(vehicle.matricula)}" class="btn btn-warning btn-sm">Editar Vehículo</a></div>` 
+                : '';
+
+                // <img src="${idImgUrl}" class="img-fluid rounded-start" alt="Imagen de ${vehicle.marca} ${vehicle.modelo}">
                 return `
                     <a href="../templates/car-detail.html?${queryString}" style="text-decoration: none;">
                         <div class="card mb-3 text-dark">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="${idImgUrl}" class="img-fluid rounded-start" alt="Imagen de ${vehicle.marca} ${vehicle.modelo}">
+                                    <img src="${imagenUrl}" class="img-fluid rounded-start" alt="Imagen de ${vehicle.marca} ${vehicle.modelo}">
+                                    ${editButton}
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
