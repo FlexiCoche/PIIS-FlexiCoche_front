@@ -1,4 +1,5 @@
 import { authUtils } from '../utils/auth.utils.js';
+import { API_BASE } from '../utils/config.js';
 
 document.addEventListener("DOMContentLoaded", async function () {
     await authUtils.init();
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const token = localStorage.getItem('jwtToken');
 
         try {
-            const response = await fetch("http://localhost:8080/usuarios/modificarPassword", {
+            const response = await fetch(`${API_BASE}/usuarios/modificarPassword`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

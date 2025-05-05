@@ -26,7 +26,7 @@ export const httpClient = {
       if (error instanceof SyntaxError) {
         throw new Error("Error procesando la respuesta del servidor");
       }
-      throw error; // Relanzar otros errores
+      throw error;
     }
   },
 };

@@ -1,7 +1,7 @@
-// vehicle.api.js
+import { API_BASE } from '../utils/config.js';
 
 export async function searchVehicles(params) {
-    const url = new URL('http://localhost:8080/vehiculos/buscador');
+    const url = new URL(`${API_BASE}/vehiculos/buscador`);
 
     Object.entries(params).forEach(([key, value]) => {
         if (value !== '' && value !== null && value !== undefined) {
@@ -22,7 +22,8 @@ export async function searchVehicles(params) {
 }
 
 export async function getLocalizaciones() {
-    const url = 'http://localhost:8080/vehiculos/localizaciones';
+    const url = `${API_BASE}/vehiculos/localizaciones`;
+
 
     const token = localStorage.getItem('token');
     const headers = token ? { Authorization: `Bearer ${token}` } : {};
@@ -37,7 +38,8 @@ export async function getLocalizaciones() {
 }
 
 export async function getLocalizacionesDetalladas() {
-    const url = 'http://localhost:8080/vehiculos/localizaciones/detallado';
+    const url = `${API_BASE}/vehiculos/localizaciones/detallado`;
+
 
     const token = localStorage.getItem('jwtToken');
     const headers = token ? { Authorization: `Bearer ${token}` } : {};
@@ -53,23 +55,30 @@ export async function getLocalizacionesDetalladas() {
 
     return await response.json();
 }
-export async function getVehiculoByMatricula(matricula) {
-    const url = `http://localhost:8080/vehiculos/matricula/${matricula}`;
 
-    const token = localStorage.getItem('token');
-    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+export async function getVehiculoByMatricula(matricula) {
+    const url = `${API_BASE}/vehiculos/matricula/${matricula}`;
+
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+        throw new Error('Token de autenticación no encontrado. Por favor inicia sesión de nuevo.');
+    }
 
     const response = await fetch(url, {
         method: 'GET',
-        headers
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
     });
 
     if (!response.ok) throw new Error('Error al obtener vehículo por matrícula');
     return await response.json();
 }
 
+
 export async function getVehiculos() {
-    const url = 'http://localhost:8080/vehiculos';
+    const url = `${API_BASE}/vehiculos`;
 
     const token = localStorage.getItem('token');
     const headers = token ? { Authorization: `Bearer ${token}` } : {};
@@ -85,7 +94,7 @@ export async function getVehiculos() {
 
 export async function actualizarVehiculo(matricula, vehiculoData) {
     try {
-        const url = `http://localhost:8080/vehiculos/updateVehiculo/${matricula}`;
+        const url = `${API_BASE}/vehiculos/updateVehiculo/${matricula}`;
         const token = localStorage.getItem('jwtToken');  
 
         const response = await fetch(url, {

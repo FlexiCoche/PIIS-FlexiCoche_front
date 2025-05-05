@@ -1,6 +1,5 @@
 import { httpClient } from "../utils/http.utils.js";
-
-const API_BASE = "http://localhost:8080";
+import { API_BASE } from '../utils/config.js';
 
 export const userAPI = {
   async login(credenciales) {

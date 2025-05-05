@@ -168,12 +168,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     restaurarTipoSeleccionado();
 
-    function obtenerIdDeUrl(url) {
-        const regex = /[?&]id=([a-zA-Z0-9_-]+)/;
-        const match = url.match(regex);
-        return match ? match[1] : null;
-    }
-
     function renderResults(vehicles, currentParams) {
         if (!resultsContainer) return;
 
@@ -181,7 +175,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const fechaInicio = currentParams?.fechaInicio || '';
         const fechaFin = currentParams?.fechaFin || '';
-        const tipo = currentParams?.tipo || '';
+        const tipo = currentParams?.tipo || 'COCHE';
     
         const precioMin = parseFloat(currentParams.precioMin || 0); 
         const precioMax = parseFloat(currentParams.precioMax || Infinity);
@@ -218,17 +212,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         resultsContainer.innerHTML = filtrados.length
             ? filtrados.map(vehicle => {     
                 const imagenUrl = vehicle.imagenUrl?.trim();
-                //const cloudinaryUrl = imagenUrl ? `https://res.cloudinary.com/dgmgxocne/image/upload/vehiculos/${imagenUrl}` : '/assets/images/default.png';  
-
-                //const idImgUrlAcotada = obtenerIdDeUrl(imagenUrl);
-                //const idImgUrl = idImgUrlAcotada ? `https://drive.google.com/thumbnail?id=${idImgUrlAcotada}` : '/assets/images/default.png';
                 
-                const queryString = `matricula=${encodeURIComponent(vehicle.matricula)}&fechaInicio=${encodeURIComponent(fechaInicio)}&fechaFin=${encodeURIComponent(fechaFin)}&tipo=${encodeURIComponent(tipo)}`;
+                const queryString = `matricula=${encodeURIComponent(vehicle.matricula)}&fechaInicio=${encodeURIComponent(fechaInicio)}&fechaFin=${encodeURIComponent(fechaFin)}&tipoVehiculo=${encodeURIComponent(tipo)}`;
                 const editButton = userRol === 'ADMIN' 
                 ? `<div class="edit-button mt-2"><a href="../templates/car-data-edit.html?matricula=${encodeURIComponent(vehicle.matricula)}" class="btn btn-warning btn-sm">Editar Vehículo</a></div>` 
                 : '';
 
-                // <img src="${idImgUrl}" class="img-fluid rounded-start" alt="Imagen de ${vehicle.marca} ${vehicle.modelo}">
                 return `
                     <a href="../templates/car-detail.html?${queryString}" style="text-decoration: none;">
                         <div class="card mb-3 text-dark">

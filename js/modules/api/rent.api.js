@@ -1,4 +1,6 @@
-const API_URL = 'http://localhost:8080/alquileres';
+import { API_BASE } from '../utils/config.js';
+
+const API_URL = `${API_BASE}/alquileres`;
 
 export async function createAlquiler(data) {
     const token = localStorage.getItem('jwtToken');
@@ -102,4 +104,29 @@ export async function anularAlquiler(idAlquiler) {
     }
 
     return true;
+}
+
+// Cambiar estado de alquiler
+export async function cambiarEstadoAlquiler(id, nuevoEstado) {
+    const token = localStorage.getItem('jwtToken');
+
+    const response = await fetch(`${API_URL}/cambiarEstado`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+            idAlquiler: id,
+            newEstado: nuevoEstado
+        })
+    });
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Error al cambiar de estado el alquiler: ${errorText}`);
+    }
+
+    alert(`Estado cambiado a ${nuevoEstado}`);
+    window.location.reload();
 }

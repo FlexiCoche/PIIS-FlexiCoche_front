@@ -1,4 +1,5 @@
-import { userAPI } from '../api/user.api.js';import { LoginForm } from '../components/user.component.js';
+import { userAPI } from '../api/user.api.js';
+import { LoginForm } from '../components/user.component.js';
 
 export class LoginPage {
     constructor() {

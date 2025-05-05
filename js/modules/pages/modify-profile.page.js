@@ -1,4 +1,5 @@
 import { authUtils } from '../utils/auth.utils.js';
+import { API_BASE } from '../utils/config.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     await authUtils.init();
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        const res = await fetch('http://localhost:8080/usuarios/datos', {
+        const res = await fetch(`${API_BASE}/usuarios/datos`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 
@@ -52,9 +53,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         usernameHeader.textContent = data.nombre;
 
         if (data.foto) {
-            //const imageUrl = data.foto.replace("https://drive.google.com/uc?export=view&id=", "https://drive.google.com/thumbnail?id=");
-            //console.log("Imagen de perfil URL: ", imageUrl);
-
             profileImg.src = data.foto;
             console.log('Imagen cargada desde URL:', profileImg.src);
         } else {
@@ -84,7 +82,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         };
 
         try {
-            const res = await fetch('http://localhost:8080/usuarios', {
+            const res = await fetch(`${API_BASE}/usuarios`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -131,7 +129,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
         try {
             const token = localStorage.getItem('jwtToken');
-            const resUpload = await fetch(`http://localhost:8080/usuarios/modificarImagen`, {
+            const resUpload = await fetch(`${API_BASE}/usuarios/modificarImagen`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -150,45 +148,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             alert('Error al actualizar la imagen de perfil.');
         }
     });
-    
-
-    // imageInput.addEventListener('change', async () => {
-    //     const file = imageInput.files[0];
-    //     if (!file) return;
-    
-    //     const formData = new FormData();
-    //     formData.append('imagen', file);
-    
-    //     try {
-    //         const token = localStorage.getItem('jwtToken');
-    //         const resUser = await fetch('http://localhost:8080/usuarios/datos', {
-    //             headers: { 'Authorization': `Bearer ${token}` }
-    //         });
-    
-    //         if (!resUser.ok) throw new Error('Error al obtener datos del usuario');
-    //         const userData = await resUser.json();
-    
-    //         const resUpload = await fetch(`http://localhost:8080/usuarios/modificarImagen`, {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Authorization': `Bearer ${token}`
-    //             },
-    //             body: formData
-    //         });
-    
-    //         if (!resUpload.ok) throw new Error(await resUpload.text());
-    
-    //         alert('✅ Imagen actualizada correctamente.');
-    //         // Actualizar preview sin recargar
-    //         const newImgUrl = URL.createObjectURL(file);
-    //         profileImg.src = newImgUrl;
-    
-    //     } catch (err) {
-    //         console.error('❌ Error actualizando imagen:', err);
-    //         alert('Error al actualizar la imagen de perfil.');
-    //     }
-    // });
-
 });
 
 function convertirDdMmYyyyToIso(fechaStr) {
