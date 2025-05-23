@@ -4,6 +4,17 @@
     margin-bottom: 2em;
 }
 
+@media screen and (max-width: 768px) {
+  #car-data-carousel-container {
+    max-width: 100%;
+    margin: 0 auto 2em auto;
+  }
+  #carousel-show {
+    width: 100% !important;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
 .carousel-control-prev-icon
 {
     background-image: url("../icons/arrow_prev.png");
@@ -67,9 +78,7 @@ hr
     background-color: rgb(150,150,150);
 }
 
-#campos-camion{
-	width: 100px;
-}
+
 
 select, input{
 	padding: 7px;
@@ -107,9 +116,7 @@ select, input{
   }
 }
 
-.down > span {
-	margin: 20px;
-}
+
 
 #details-container .row {
   display: flex;
@@ -132,4 +139,41 @@ select, input{
 
 #details-container .row {
   margin-left: 100px;
+}
+.row.down {
+  width: 95%;
+  max-width: 900px;
+  min-width: 250px;
+  margin: 0 auto 1em auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  align-items: center;
+  justify-content: flex-start;
+  background: none;
+}
+
+.row.down > span {
+  flex: 1 1 200px;
+  min-width: 180px;
+  max-width: 300px;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin: 0;
+}
+
+/* Responsive: en pantallas pequeñas, los campos ocupan toda la fila */
+@media screen and (max-width: 800px) {
+  .row.down {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5em;
+  }
+  .row.down > span {
+    min-width: 100%;
+    max-width: 100%;
+    flex: 1 1 100%;
+    justify-content: flex-start;
+  }
 }
